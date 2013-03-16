@@ -1,0 +1,90 @@
+/* 
+    Document   : table-style
+    Created on : 19.10.2012, 23:42:17
+    Author     : lcarausu
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+body {
+  /*background-color: #6cf551;*/
+  background-color: #9cf69e;
+  
+  width:1200px;
+  height : 1600px;  
+  margin-left:auto;
+  margin-right: auto;  
+  border-radius: 20px; 
+  -moz-border-radius: 20px; 
+ 
+}
+
+.mystyle.ui-datatable .ui-datatable-header{
+background: #003946 !important;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-header{
+background: #003946 !important;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-even{
+background: white ;
+}
+
+.mystyle.ui-datatable .ui-datatable-odd.ui-state-hover{
+background: #F4E7C1 ;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-even.ui-state-hover{
+background: #F4E7C1 ;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-even.ui-state-highlight{
+background: #fff9e5 ;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-odd.ui-state-highlight{
+background: #fff9e5 ;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-data-empty td {
+color:red;
+font-weight:bold;
+}
+.ui-datatable.mystyle th {
+background: EAAB00;
+font-family: verdana;
+font-size: 1em;
+}
+
+.ui-datatable.mystyle tr { line-height: 12px; }
+
+.mystyle.ui-datatable .ui-expanded-row-content{
+background:white;
+}
+
+form .styleGreen {    
+    background-color: #009900;
+    font-family: Arial,Helvetica,sans-serif;
+     border-radius: 5px; 
+     margin-top:5px;
+    margin-bottom:5px;
+}
+
+#userName {
+    font-weight: bold;
+}
+
+.bold
+{
+   font-weight: bold;
+} 

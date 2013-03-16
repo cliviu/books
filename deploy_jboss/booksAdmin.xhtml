@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" media="screen,projection" title="Standardstylesheet" href="stylesheets/default.css" type="text/css" />
+    </h:head>
+    <h:body>       
+       <p:tabView id="tabView">
+        <p:ajax event="tabChange" listener="#{booksTabListener.onTabChange}" />      
+         <p:tab id="mytab" title="Overview">
+            <ui:include src="books.xhtml" />
+         </p:tab>                
+         <p:tab id="usersTab" title="Users">
+            <ui:include src="users.xhtml" />                  
+         </p:tab>
+        </p:tabView>     
+    </h:body>
+     <h:outputStylesheet library="css" name="table-style.css" />
+</html>

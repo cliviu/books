@@ -1,0 +1,126 @@
+body {
+  background-color: #ffffc8;
+  font-family: Verdana,Geneva,Arial, sans-serif; 
+
+}
+
+#all-content {
+  background-color: #6cf551;  
+  width:800px;
+  height : 1200px;  
+  margin-left:auto;
+  margin-right: auto;  
+  border-radius: 20px; 
+  -moz-border-radius: 20px; 
+}
+
+img {        
+    padding-top: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left:0;
+    margin-right:0;
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+}
+
+#all-content img {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-spacing: 0;
+  -moz-border-radius: 20px; 
+}
+
+#nav-menu
+{
+  margin-left:auto;
+  margin-right:auto;
+  padding-top: 20px;
+  padding-bottom: 20px;    
+  border-radius: 5px; 
+  -moz-border-radius: 5px; 
+}
+
+#nav-menu ul
+{
+ list-style: none;
+ padding: 0;
+ margin: 0;
+ margin-bottom:20px;
+ font-size: 16px;  
+} 
+
+#nav-menu li
+{
+  float: left;
+  /* margin: 0 0.15em; */
+} 
+
+#nav-menu li a:link
+{
+ background: url(background.gif) #fff bottom left repeat-x;
+ height: 1.2em;
+ line-height: 1.2em;
+ width: 9em;
+ display: block;
+ border: 0.1em solid #dcdce9; 
+ text-decoration: none;
+ text-align: center;
+ color: green;
+ border-radius: 5px; 
+  -moz-border-radius: 5px; 
+}
+
+#nav-menu li a:visited
+{
+ background: url(background.gif) #fff bottom left repeat-x;
+ height: 1.2em;
+ line-height: 1.2em;
+ width: 9em;
+ display: block;
+ border: 0.1em solid #dcdce9; 
+ text-decoration: none;
+ text-align: center;
+ color: green;
+}
+
+#nav-menu li a:hover
+{
+ background: url(background.gif) #fff bottom left repeat-x;
+ height: 1.2em;
+ line-height: 1.2em;
+ width: 9em;
+ display: block;
+ border: 0.1em solid #dcdce9; 
+ text-decoration: underline;
+ text-align: center;
+ color:red;
+}
+
+
+form .indexButton
+{
+   color: red;	
+   margin-top: 10px;
+   margin-left: 5px;
+   margin-right: 5px;
+   margin-bottom: 5px;
+   font-size: 80%;
+   border-radius: 10px; 
+} 
+
+.footer {        
+    font-size: 50%;
+    text-align: center;
+    line-height: normal;
+    margin-top: 30px;
+ 
+}
+
+.title
+{
+   color: green;	
+   alignment-adjust: central;
+   font-size: 200%;
+   margin-bottom: 40px;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" media="screen,projection" title="Standardstylesheet" href="stylesheets/default.css" type="text/css" />
+    </h:head>
+    <h:body>       
+        <h:outputStylesheet library="css" name="table-style.css" />
+        <h:outputText value="Account information for user "/> 
+        <h:outputText id ="userName" value="#{userTableController.selectedUser.firstName} #{userTableController.selectedUser.lastName}"  /> 
+        <br/>
+        <p/>
+        <h:form id="userBooksForm">
+            <h:outputText class="bold" value="Booked books:"/> 
+            <p/><p/>
+
+            <p:dataTable id="booksTable" var="book" value="#{userTableController.userBooks}" paginator="true" rows="10" selectionMode="single" 
+                         selection="#{userTableController.selectedNewBook}" rowKey="#{book.id}" 
+                         styleClass="mystyle" rowStyleClass="order-table-odd-row,order-table-even-row">
+                <p:column filterBy="#{book.title}">
+                    <f:facet name="header">
+                        <h:outputText value="Title" />
+                    </f:facet>
+                    <h:outputText value="#{book.title}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Author" />
+                    </f:facet>
+                    <h:outputText value="#{book.author}" />
+                </p:column>
+                <p:column sortBy="#{book.isbn}" >
+                    <f:facet name="header">
+                        <h:outputText value="ISBN" />
+                    </f:facet>
+                    <h:outputText value="#{book.isbn}" />
+                    <f:facet name="footer">
+                        13 digit code
+                    </f:facet>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Year" />
+                    </f:facet>
+                    <h:outputText value="#{book.year}" />
+                </p:column>
+            </p:dataTable>                    
+            <p/>
+            <p:commandButton value="Return book"  type="submit"   action="#{userTableController.returnBook()}" update="@(.ui-datatable),@(.mystyle.ui-datatable)" styleClass="styleGreen" />  
+            
+            <p/><p/><p/><p/>
+            <h:outputText class="bold" value="All available books:"/> 
+            <p/><p/>
+            <p:dataTable id="allBooksTable" var="book" value="#{userTableController.allBooks}" paginator="true" rows="10" selectionMode="single" 
+                         selection="#{userTableController.selectedBook}" rowKey="#{book.id}" 
+                         styleClass="mystyle" rowStyleClass="order-table-odd-row,order-table-even-row">
+                <p:column filterBy="#{book.title}">
+                    <f:facet name="header">
+                        <h:outputText value="Title" />
+                    </f:facet>
+                    <h:outputText value="#{book.title}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Author" />
+                    </f:facet>
+                    <h:outputText value="#{book.author}" />
+                </p:column>
+                <p:column sortBy="#{book.isbn}" >
+                    <f:facet name="header">
+                        <h:outputText value="ISBN" />
+                    </f:facet>
+                    <h:outputText value="#{book.isbn}" />
+                    <f:facet name="footer">
+                        13 digit code
+                    </f:facet>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Year" />
+                    </f:facet>
+                    <h:outputText value="#{book.year}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Booked By" />
+                    </f:facet>
+                    <h:outputText value="#{book.owner.firstName} #{book.owner.lastName}" />
+                </p:column>
+            </p:dataTable>
+             <p:commandButton value="Borrow"  type="submit"   action="#{userTableController.borrow()}" update="@(.ui-datatable),@(.mystyle.ui-datatable)" styleClass="styleGreen" />            
+              <h:link value="Home" outcome="booksAdmin" />
+        </h:form>              
+    </h:body>
+</html>

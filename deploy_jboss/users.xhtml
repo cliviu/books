@@ -1,0 +1,75 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h2>Users management</h2>
+    <p:accordionPanel id ="acc"> 
+        <p:tab id ="usersTableTab" title="Users table form">  
+            <h:form id="usersTableForm">       
+                <p:dataTable id="usersTable" var="zntuser" value="#{userTableController.users}"   paginator="true" rows="10" 
+                             selectionMode="single" selection="#{userTableController.selectedUser}"  rowKey="#{zntuser.id}"  >
+                    <p:column filterBy="#{zntuser}">
+                        <f:facet name="header">
+                            <h:outputText value="First Name" />
+                        </f:facet>
+                        <h:outputText value="#{zntuser.firstName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Last Name" />
+                        </f:facet>
+                        <h:outputText value="#{zntuser.lastName}" />
+                    </p:column>
+                    <p:column sortBy="#{zntuser.persId}" >
+                        <f:facet name="header">
+                            <h:outputText value="PersId" />
+                        </f:facet>
+                        <h:outputText value="#{zntuser.persId}" />
+                        <f:facet name="footer">
+                            User pers Id
+                        </f:facet>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Department" />
+                        </f:facet>
+                        <h:outputText value="#{zntuser.department}" />
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Delete"  type="submit"   action="#{userTableController.remove()}" update ="usersTable" />    
+                 <p:commandButton value="View Account"  action="#{userTableController.viewAccount()}" ajax="false"/>    
+            </h:form>       
+        </p:tab>
+        <p:tab title="Create new user">  
+            <h:form id="usersform">
+                <p:panelGrid columns="2">  
+                    <f:facet name="header">  
+                        New User  
+                    </f:facet>  
+
+                    <h:outputLabel for="firstname" value="Firstname: " />  
+                    <h:inputText id="firstname" value="#{newUserController.firstName}" valueChangeListener="#{newUserController.valueChanged(event)}"  label="Firstname"/>  
+
+                    <h:outputLabel for="lastname" value="Lastname: " />  
+                    <h:inputText id="lastname" value="#{newUserController.lastName}" required="true" label="Lastname"/>  
+
+                    <h:outputLabel for="persId" value="PersId: *" />  
+                    <h:inputText id="persId" value="#{newUserController.persId}" required="true" label="PersId"/>  
+
+                    <h:outputLabel for="department" value="Department: *" />  
+                    <h:inputText id="department" value="#{newUserController.department}" required="true" label="Department"/>  
+
+
+                    <f:facet name="footer">  
+                        <p:commandButton type="submit"  value="Save" actionListener="#{newUserController.persistUser()}" icon="ui-icon-check" style="margin:0" 
+                                         update ="firstname,lastname,persId,department,:tabView:acc:usersTableForm:usersTable" />  
+                    </f:facet>          
+                </p:panelGrid>  
+            </h:form>      
+        </p:tab>>        
+        
+    </p:accordionPanel> 
+</ui:composition>

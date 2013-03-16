@@ -1,0 +1,93 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:outputStylesheet library="css" name="default.css" />
+    <h:form id="newBookForm">
+        <h:inputText id="isbn" value="#{newBookController.isbn}" valueChangeListener="#{newBookController.isbnChanged}" />                                                  
+        <p:commandButton value="Find Book"  actionListener="#{newBookController.searchIsbn}"  type="submit" update ="title,author,published" styleClass="indexButton"/>      
+        <p:panel id="panel" header="Search results">
+            <h:panelGrid columns="2" id="panel1">  
+                <h:outputText value="Title: " />                          
+                <h:outputText id ="title" value="#{newBookController.title}" />  
+                <h:outputText value="Author: " />                          
+                <h:outputText id ="author" value="#{newBookController.author}" />  
+                <h:outputText value="Published: " />                          
+                <h:outputText id="published" value="#{newBookController.year}" />  
+            </h:panelGrid>  
+        </p:panel>                                            
+        <p:commandButton value="Insert"  actionListener="#{newBookController.persist()}"  type="submit" update ="title,author,published,:tabView:booksTableForm:booksTable" styleClass="indexButton"/>
+    </h:form>
+    <h:outputText value="All books" />
+    <h:form id="booksTableForm">
+        <p:dataTable id="booksTable" var="book" value="#{bookTableController.books}" paginator="true" rows="10" selectionMode="single" 
+                     selection="#{bookTableController.selectedBook}" rowKey="#{book.id}" 
+                     styleClass="mystyle" rowStyleClass="order-table-odd-row,order-table-even-row">
+            <p:column filterBy="#{book.title}">
+                <f:facet name="header">
+                    <h:outputText value="Title" />
+                </f:facet>
+                <h:outputText value="#{book.title}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Author" />
+                </f:facet>
+                <h:outputText value="#{book.author}" />
+            </p:column>
+            <p:column sortBy="#{book.isbn}" >
+                <f:facet name="header">
+                    <h:outputText value="ISBN" />
+                </f:facet>
+                <h:outputText value="#{book.isbn}" />
+                <f:facet name="footer">
+                    13 digit code
+                </f:facet>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Year" />
+                </f:facet>
+                <h:outputText value="#{book.year}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Borrowed From" />
+                </f:facet>
+                <h:outputText value="#{book.formattedFromDate}" />
+            </p:column>
+            <p:column>  
+                <p:commandButton id="selectButton" update=":tabView:booksTableForm:display" icon="ui-icon-search" onstart="bookDialog.show()"  title="View">  
+                    <f:setPropertyActionListener value="#{book}" target="#{bookTableController.selectedBook}" />  
+                </p:commandButton>  
+            </p:column>  
+
+        </p:dataTable>
+        <p:commandButton value="Delete" action="#{bookTableController.remove()}" update =":tabView:booksTableForm:booksTable" styleClass="indexButton">    </p:commandButton>
+        <p:commandButton value="Borrow"  type="submit"   action="#{bookTableController.borrow()}" update =":tabView:booksTableForm:booksTable" styleClass="indexButton"/>    
+        <p:dialog  header="Book detail" widgetVar="bookDialog" resizable="false" id="carDlg"  
+                   showEffect="fade" hideEffect="explode" modal="true"   >  
+
+            <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;" onclick="initialize(#{bookTableController.selectedBook.isbn})">  
+                <h:outputText value="Title" />  
+                <h:outputText value="#{bookTableController.selectedBook.title}" style="font-weight:bold"/>  
+
+                <h:outputText value="Author" />  
+                <h:outputText value="#{bookTableController.selectedBook.author}" style="font-weight:bold"/>  
+
+                <h:outputText value="Isbn" />  
+                <h:outputText value="#{bookTableController.selectedBook.isbn}" style="font-weightbn:bold"/>  
+                <div id="viewerCanvas" title="Click to see details" style="width: 600px; height: 500px;border: 1px solid black" onShow="initialize(#{bookTableController.selectedBook.isbn})" >                    
+                        <p>click for details</p>
+                </div>
+            </h:panelGrid>  
+
+        </p:dialog>  
+    </h:form>        
+
+   
+
+</ui:composition>
